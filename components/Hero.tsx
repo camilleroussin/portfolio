@@ -45,7 +45,7 @@ export const Hero: React.FC<{ onScrollTo: (id: string) => void }> = ({ onScrollT
 
             {/* LEFT — Download CV (NE PAS TOUCHER) */}
             <a
-              href="/CV-2025-CR.pdf"
+              href="/CV-2026-CR.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="

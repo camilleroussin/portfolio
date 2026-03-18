@@ -4,49 +4,87 @@ export const TIMELINE_DATA: TimelineItem[] = [
   {
     years: "2023–2027",
     title: "KEDGE Business School",
-    subtitle: "Master in Management",
-    description: "Specialization: Purchasing, Supply Chain, HR, Management, Marketing.",
-    location: "Bordeaux, France"
+    subtitle: {
+      en: "Master in Management",
+      fr: "Programme Grande École – Master en Management",
+    },
+    description: {
+      en: "Specialization: Purchasing, Supply Chain, HR, Management, Marketing.",
+      fr: "Spécialisation : achats, supply chain, ressources humaines, management et marketing.",
+    },
+    location: "Bordeaux, France",
   },
   {
     years: "Mar 2026 – July 2026",
     title: "UBA — University of Buenos Aires",
-    subtitle: "Faculty of Economic Sciences",
-    description: "International Semester. Immersion in South American culture, advanced Spanish practice, and courses in International Business & Logistics.",
-    location: "Buenos Aires, Argentina"
+    subtitle: {
+      en: "Faculty of Economic Sciences",
+      fr: "Faculté des Sciences Économiques",
+    },
+    description: {
+      en: "International Semester. Immersion in South American culture, advanced Spanish practice, and courses in International Business & Logistics.",
+      fr: "Semestre international : immersion en Amérique du Sud, perfectionnement en espagnol et cours en commerce international et logistique.",
+    },
+    location: "Buenos Aires, Argentina",
   },
   {
     years: "2021–2023",
     title: "CPGE ECG",
-    subtitle: "Preparatory Classes",
-    description: "Majors: Applied Math, Economics, Sociology, History.",
-    location: "Bordeaux, France"
-  }
+    subtitle: {
+      en: "Preparatory Classes",
+      fr: "Classes préparatoires ECG",
+    },
+    description: {
+      en: "Majors: Applied Math, Economics, Sociology, History.",
+      fr: "Spécialités : mathématiques appliquées, économie, sociologie et histoire.",
+    },
+    location: "Bordeaux, France",
+  },
 ];
 
 export const SKILLS_DATA: SkillCategory[] = [
   {
     title: "Hard Skills",
-    skills: [
-      "Purchasing & Supplier Management",
-      "Supply Chain Fundamentals",
-      "Data structuring & analysis",
-      "Python (basics)",
-      "Excel & reporting",
-      "Catalog & documentation management"
-    ]
+    skills: {
+      en: [
+        "Purchasing & Supplier Management",
+        "Supply Chain Fundamentals",
+        "Data structuring & analysis",
+        "Python (basics)",
+        "Excel & reporting",
+        "Catalog & documentation management",
+      ],
+      fr: [
+        "Achats & gestion des fournisseurs",
+        "Fondamentaux de la supply chain",
+        "Structuration et analyse de données",
+        "Python (bases)",
+        "Excel & reporting",
+        "Gestion de catalogues et de documentation",
+      ],
+    },
   },
   {
     title: "Soft Skills",
-    skills: [
-      "Rigor",
-      "Team spirit",
-      "Adaptability",
-      "Punctuality",
-      "Communication",
-      "Organization"
-    ]
-  }
+    skills: {
+      en: [
+        "Rigor",
+        "Team spirit",
+        "Adaptability",
+        "Punctuality",
+        "Communication",
+        "Organization",
+      ],
+      fr: [
+        "Rigueur",
+        "Esprit d’équipe",
+        "Adaptabilité",
+        "Ponctualité",
+        "Communication",
+        "Organisation",
+      ],
+    },
+  },
 ];
 
 export const EXPERIENCE_DATA: ExperienceItem[] = [

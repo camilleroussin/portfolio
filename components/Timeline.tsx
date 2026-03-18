@@ -2,27 +2,36 @@ import React from "react";
 import { TIMELINE_DATA } from "../constants";
 import { FadeIn } from "./FadeIn";
 import { MapPin } from "lucide-react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 export const Timeline: React.FC = () => {
+  const { lang } = useLanguage();
+
+  const t = {
+    pill: lang === "fr" ? "Mon parcours" : "My Journey",
+    title:
+      lang === "fr"
+        ? "Parcours académique & professionnel"
+        : "Academic & Professional Path",
+  };
+
   return (
     <section
       id="timeline"
       className="py-24 px-6 bg-gradient-to-b from-beige/50 to-white overflow-hidden"
     >
       <div className="max-w-5xl mx-auto relative isolate">
-        {/* Header */}
         <FadeIn>
           <div className="text-center mb-20">
             <span className="inline-block px-4 py-1.5 rounded-full bg-nude/40 text-taupe text-sm font-medium mb-4">
-              My Journey
+              {t.pill}
             </span>
             <h2 className="font-display text-3xl md:text-4xl text-gray-800 font-bold">
-              Academic &amp; Professional Path
+              {t.title}
             </h2>
           </div>
         </FadeIn>
 
-        {/* ✅ Ligne centrale FIXÉE */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute left-8 md:left-1/2 top-24 bottom-10 md:-translate-x-1/2 z-10"
@@ -37,19 +46,23 @@ export const Timeline: React.FC = () => {
         <div className="relative z-20 space-y-12">
           {TIMELINE_DATA.map((item, index) => {
             const isEven = index % 2 === 0;
+            const subtitle =
+              typeof item.subtitle === "string" ? item.subtitle : item.subtitle?.[lang];
+            const description =
+              typeof item.description === "string"
+                ? item.description
+                : item.description?.[lang];
 
             return (
               <div
                 key={index}
                 className="relative md:grid md:grid-cols-2 md:gap-12 items-center"
               >
-                {/* Dot */}
                 <div
                   className="absolute left-8 md:left-1/2 top-8 md:top-1/2 md:-translate-y-1/2 w-4 h-4 rounded-full bg-white border-4 border-sage shadow-[0_0_0_4px_rgba(247,239,232,1)] z-30 -translate-x-1/2 transition-all duration-300 hover:scale-125 hover:border-taupe"
                   aria-hidden="true"
                 />
 
-                {/* Colonne gauche */}
                 <div className="pl-20 md:pl-0">
                   {isEven && (
                     <FadeIn delay={index * 120}>
@@ -73,12 +86,12 @@ export const Timeline: React.FC = () => {
                         </h3>
 
                         <div className="text-nude font-semibold text-sm uppercase tracking-wider mb-3">
-                          {item.subtitle}
+                          {subtitle}
                         </div>
 
-                        {item.description && (
+                        {description && (
                           <p className="text-gray-500 text-sm leading-relaxed opacity-90">
-                            {item.description}
+                            {description}
                           </p>
                         )}
                       </div>
@@ -86,7 +99,6 @@ export const Timeline: React.FC = () => {
                   )}
                 </div>
 
-                {/* Colonne droite */}
                 <div className="pl-20 md:pl-0">
                   {!isEven && (
                     <FadeIn delay={index * 120}>
@@ -110,12 +122,12 @@ export const Timeline: React.FC = () => {
                         </h3>
 
                         <div className="text-nude font-semibold text-sm uppercase tracking-wider mb-3">
-                          {item.subtitle}
+                          {subtitle}
                         </div>
 
-                        {item.description && (
+                        {description && (
                           <p className="text-gray-500 text-sm leading-relaxed opacity-90">
-                            {item.description}
+                            {description}
                           </p>
                         )}
                       </div>
@@ -123,7 +135,6 @@ export const Timeline: React.FC = () => {
                   )}
                 </div>
 
-                {/* Mobile fallback */}
                 <div className="md:hidden pl-20">
                   <FadeIn delay={index * 120}>
                     <div className="relative bg-white p-8 rounded-3xl shadow-sm border border-white/60">
@@ -143,11 +154,11 @@ export const Timeline: React.FC = () => {
                         {item.title}
                       </h3>
                       <div className="text-nude font-semibold text-sm uppercase tracking-wider mb-3">
-                        {item.subtitle}
+                        {subtitle}
                       </div>
-                      {item.description && (
+                      {description && (
                         <p className="text-gray-500 text-sm leading-relaxed opacity-90">
-                          {item.description}
+                          {description}
                         </p>
                       )}
                     </div>
