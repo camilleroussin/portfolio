@@ -33,7 +33,6 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
     { name: t.nav.contact, id: "contact" },
   ];
 
-  // ✅ Texte EN/FR toujours foncé, thumb indique l'actif
   const LangSwitch = ({ className = "" }: { className?: string }) => {
     const isEN = lang === "en";
 
@@ -53,7 +52,6 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
         aria-label="Toggle language"
         title={isEN ? "Passer en français" : "Switch to English"}
       >
-        {/* Thumb (la pastille) */}
         <span
           className={[
             "absolute top-1 bottom-1 w-[42px] rounded-full",
@@ -65,7 +63,6 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
           aria-hidden="true"
         />
 
-        {/* Labels : TOUJOURS foncés */}
         <span className="relative z-10 w-[42px] text-center text-xs font-semibold text-gray-800">
           EN
         </span>
@@ -85,7 +82,6 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Logo */}
         <div
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="font-display font-bold text-xl text-gray-800 cursor-pointer hover:text-taupe transition-colors tracking-tight"
@@ -93,7 +89,6 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
           Camille Roussin
         </div>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <button
@@ -111,7 +106,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
 
           {/* CV button */}
           <a
-            href="/CV-2025-CR.pdf"
+            href="/CV-2026-CR.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className={[
@@ -126,16 +121,14 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
             {t.nav.cv}
           </a>
 
-          {/* Language switch */}
           <LangSwitch className="ml-2" />
         </nav>
 
-        {/* Mobile controls */}
         <div className="md:hidden flex items-center gap-2">
           <LangSwitch />
 
           <a
-            href="/CV-2025-CR.pdf"
+            href="/CV-2026-CR.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className={[
@@ -159,7 +152,6 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* Mobile Nav Dropdown */}
       <div
         className={`md:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-100 shadow-lg transition-all duration-300 origin-top overflow-hidden ${
           isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
@@ -176,7 +168,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
             </button>
           ))}
           <a
-            href="/CV-2025-CR.pdf"
+            href="/CV-2026-CR.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="text-left px-8 py-3 text-taupe hover:bg-gray-50 font-semibold transition-colors flex items-center gap-2"
