@@ -5,6 +5,8 @@ interface FadeInProps {
   delay?: number;
   className?: string;
   direction?: "up" | "none";
+  /** Si true, déclenche l'apparition plus tôt (utile pour gros blocs) */
+  triggerEarly?: boolean;
 }
 
 export const FadeIn: React.FC<FadeInProps> = ({
@@ -12,6 +14,7 @@ export const FadeIn: React.FC<FadeInProps> = ({
   delay = 0,
   className = "",
   direction = "up",
+  triggerEarly = false,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const domRef = useRef<HTMLDivElement>(null);
@@ -28,33 +31,42 @@ export const FadeIn: React.FC<FadeInProps> = ({
     }
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            // ✅ On arrête d'observer dès que c'est visible (perf)
-            if (domRef.current) observer.unobserve(domRef.current);
-          }
-        });
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          if (domRef.current) observer.unobserve(domRef.current);
+        }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+      {
+        threshold: triggerEarly ? 0.05 : 0.12,
+        rootMargin: triggerEarly ? "0px 0px -35% 0px" : "0px 0px -15% 0px",
+      }
     );
 
-    const currentRef = domRef.current;
-    if (currentRef) observer.observe(currentRef);
+    const current = domRef.current;
+    if (current) observer.observe(current);
 
     return () => {
-      if (currentRef) observer.unobserve(currentRef);
+      if (current) observer.unobserve(current);
     };
-  }, []);
+  }, [triggerEarly]);
 
-  const translateClass = direction === "up" ? "translate-y-8" : "";
-  const opacityClass = isVisible ? "opacity-100 translate-y-0" : `opacity-0 ${translateClass}`;
+  const baseOffset = direction === "up" ? "translate-y-6" : "";
+  const stateClasses = isVisible
+    ? "opacity-100 translate-y-0 blur-0"
+    : `opacity-0 ${baseOffset} blur-[1px]`;
 
   return (
     <div
       ref={domRef}
-      className={`transition-[opacity,transform] duration-700 ease-out ${opacityClass} ${className}`}
+      className={[
+        "transition-all",
+        "duration-[1100ms]",
+        "ease-[cubic-bezier(.22,.61,.36,1)]",
+        "will-change-[opacity,transform]",
+        stateClasses,
+        className,
+      ].join(" ")}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
